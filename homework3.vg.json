@@ -1,0 +1,39 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Confirmed COVID-19 Cases",
+    "width": 800,
+    "height": 400,
+    "projection": {"type": "mercator"},
+    "data": {
+    "url": "https://raw.githubusercontent.com/alwaysblazing/Australia-State-TopoJson-MapChart/master/au-states-topo.json",
+    "format": {"type": "topojson", "feature": "austates"}
+    },
+    "transform": [
+    {
+    "lookup": "id",
+    "from": {
+    "data": {
+    "url": "conf_coor.csv"
+    },
+    "key": "no_id",
+    "fields": ["state","confirmed"]
+    }
+  }
+  ],
+  "mark": {"type": "geoshape"},
+  "encoding": {
+  "color": {
+  "field": "confirmed",
+  "type": "quantitative",
+  "scale": {"type": "log"}
+  },
+  "tooltip": [
+  {"field": "state", "type": "nominal", "title":
+  "states"},
+  {"field": "confirmed", "type": "quantitative"}
+  ]
+  }
+  }
+  
+  
+  
